@@ -1,3 +1,4 @@
+const TMDB_PROXY_URL = "https://mute-lab-3092jemmoviemax-api.jasaancool6.workers.dev/";
 /* ==========================================
    CINEMAX — MOVIE CATALOGUE
    100 released movies + upcoming movies
@@ -352,13 +353,11 @@ const movies = [
   ...additionalMovies,
   ...newlyReleasedMovies
 ];
-const TMDB_API_KEY = "cbbfdbd0d77197501a310c3b403304ae";
 
 async function fetchMovieArtwork(movie) {
   try {
     const url =
-      `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}`;
-
+  `${TMDB_PROXY_URL}?path=${encodeURIComponent("/3/search/movie")}&query=${encodeURIComponent(movie.title)}`;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -398,8 +397,8 @@ async function fetchMovieTrailer(movie) {
     }
 
     const url =
-      `https://api.themoviedb.org/3/movie/${movie.tmdbId}/videos?api_key=${TMDB_API_KEY}`;
-
+  `${TMDB_PROXY_URL}?path=${encodeURIComponent(`/3/movie/${movie.tmdbId}/videos`)}`;
+  
     const response = await fetch(url);
     if (!response.ok) return;
 
