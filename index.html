@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#09090d" />
+  <meta name="description" content="CineMax — discover movies, explore genres and watch trailers." />
+  <title>CineMax — Movies for every mood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CineMax home"><span class="brand-mark">C</span><span>CINE<span>MAX</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="#home">Home</a><a href="#browse">Discover</a><a href="#watchlist">My List</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn search-toggle" id="searchToggle" aria-label="Focus search">⌕</button>
+      <button class="profile-button" id="accountButton"><span class="profile-avatar">G</span><span id="accountLabel">Guest</span><span class="chevron">⌄</span></button>
+      <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero" id="hero">
+      <div class="hero-backdrop" id="heroBackdrop"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="eyebrow-line"></span> CINE MAX ORIGINALS</div>
+        <div class="hero-kicker">FEATURED FILM <span>•</span> 2024</div>
+        <h1 id="heroTitle">DUNE: PART TWO</h1>
+        <div class="hero-meta" id="heroMeta"><span class="rating">★ 8.5</span><span>2024</span><span>2h 46m</span><span class="pill">Sci-Fi</span></div>
+        <p class="hero-description" id="heroDescription">Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.</p>
+        <div class="hero-buttons">
+          <button class="primary-btn" id="heroTrailer"><span>▶</span> Watch trailer</button>
+          <button class="secondary-btn" id="heroDetails"><span>＋</span> More info</button>
+        </div>
+      </div>
+      <div class="hero-pagination" id="heroPagination"></div>
+      <div class="hero-note">YOUR NEXT FAVORITE FILM STARTS HERE</div>
+    </section>
+
+    <section class="content-wrap">
+      <section class="quick-stats">
+        <div><span class="stat-icon">✦</span><span><b>Discover something new</b><small>Handpicked films for every mood</small></span></div>
+        <div><span class="stat-icon">▶</span><span><b>Trailers in one place</b><small>Preview before you press play</small></span></div>
+        <div><span class="stat-icon">♡</span><span><b>Your personal watchlist</b><small>Keep the films you love close</small></span></div>
+      </section>
+
+      <section class="browse-section" id="browse">
+        <div class="section-heading">
+          <div><p class="section-overline">FIND YOUR NEXT OBSESSION</p><h2>Explore movies</h2></div>
+          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search movies, genres..." autocomplete="off"><kbd>/</kbd></label><select id="sortSelect" class="sort-select">
+  <option value="default">Sort movies</option>
+  <option value="rating">Highest rated</option>
+  <option value="newest">Newest first</option>
+  <option value="oldest">Oldest first</option>
+  <option value="title">A–Z</option>
+</select>
+        </div>
+        <div class="category-list" id="categoryList">
+          <button class="category-chip selected" data-category="All">All movies</button>
+          <button class="category-chip" data-category="Action">Action</button>
+          <button class="category-chip" data-category="Sci-Fi">Sci-Fi</button>
+          <button class="category-chip" data-category="Drama">Drama</button>
+          <button class="category-chip" data-category="Thriller">Thriller</button>
+          <button class="category-chip" data-category="Adventure">Adventure</button>
+          <button class="category-chip" data-category="Comedy">Comedy</button>
+          <button class="category-chip" data-category="Animation">Animation</button>
+        </div>
+        <div class="results-line"><h3 id="resultsTitle">Trending now</h3><span id="resultCount"></span></div>
+        <div class="movie-grid" id="movieGrid"></div>
+        <div class="empty-state hidden" id="emptyState"><div>⌕</div><h3>No movies found</h3><p>Try another title or choose a different category.</p><button class="text-button" id="clearFilters">Clear filters</button></div>
+      </section>
+      <!-- UPCOMING MOVIES -->
+      <section class="upcoming-section" id="upcoming">
+        <div class="section-heading compact">
+          <div>
+            <p class="section-overline">COMING SOON</p>
+            <h2>Upcoming movies <span class="list-count" id="upcomingCount">0</span></h2>
+          </div>
+          <p class="section-hint">Discover what's coming next.</p>
+        </div>
+
+        <div class="movie-grid" id="upcomingGrid"></div>
+      </section>
+      <section class="watchlist-section" id="watchlist">
+        <div class="section-heading compact"><div><p class="section-overline">SAVED FOR LATER</p><h2>My watchlist <span class="list-count" id="watchlistCount">0</span></h2></div><p class="section-hint">Your movies, all in one place.</p></div>
+        <div class="movie-grid watchlist-grid" id="watchlistGrid"></div>
+        <div class="watchlist-empty" id="watchlistEmpty"><span>♡</span><p>Your watchlist is waiting.</p><small>Tap the heart on any movie to save it here.</small></div>
+      </section>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>CINE<span>MAX</span></span></a><p>Discover stories worth watching.</p><small>© <span id="year"></span> CineMax. Movie information and trailers are provided for discovery purposes.</small></footer>
+
+  <div class="modal-backdrop hidden" id="movieModal" role="dialog" aria-modal="true" aria-label="Movie details">
+    <div class="modal movie-modal"><button class="modal-close" data-close aria-label="Close">×</button><div class="detail-cover" id="detailCover"></div><div class="detail-body"><div class="detail-label">MOVIE DETAILS</div><h2 id="detailTitle"></h2><div class="detail-meta" id="detailMeta"></div><p id="detailDescription"></p><div class="detail-actions"><button class="primary-btn" id="detailTrailer">▶ Watch trailer</button><button class="secondary-btn" id="detailSave">♡ Add to watchlist</button></div></div></div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="trailerModal" role="dialog" aria-modal="true" aria-label="Movie trailer">
+    <div class="modal trailer-modal"><button class="modal-close" data-close aria-label="Close">×</button><div class="trailer-heading"><span>NOW PLAYING</span><h2 id="trailerTitle">Movie trailer</h2></div><div class="video-frame" id="videoFrame"></div><p class="trailer-disclaimer">Trailer playback is provided through YouTube. Availability may vary by region.</p></div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="authModal" role="dialog" aria-modal="true" aria-label="Account">
+    <div class="modal auth-modal"><button class="modal-close" data-close aria-label="Close">×</button><a class="brand auth-brand" href="#"><span class="brand-mark">C</span><span>CINE<span>MAX</span></span></a><p class="section-overline">YOUR CINEMATIC SPACE</p><h2 id="authTitle">Welcome back</h2><p class="auth-subtitle">Sign in to keep your watchlist close.</p>
+      <div class="auth-tabs"><button class="auth-tab active" data-auth="login">Sign in</button><button class="auth-tab" data-auth="register">Create account</button></div>
+      <form id="authForm"><label id="nameField" class="hidden">Your name<input id="authName" type="text" placeholder="Alex Morgan"></label><label>Email address<input id="authEmail" type="email" placeholder="you@example.com" required></label><label>Password<input id="authPassword" type="password" placeholder="At least 6 characters" minlength="6" required></label><p class="auth-error" id="authError"></p><button class="primary-btn auth-submit" type="submit" id="authSubmit">Sign in</button></form>
+      <p class="auth-footnote">Demo account only. Your account details stay in this browser and are not sent to a server.</p>
+      <button class="text-button signout hidden" id="signOut">Sign out</button>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+
+<div id="loadingScreen">
+  <img src="favicon.png" alt="JemMovieMax">
+  <h2>JemMovieMax</h2>
+  <div class="loader"></div>
+  <p>Preparing your movie experience...</p>
+</div>
+
+</body>
+</html>
