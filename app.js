@@ -1,6 +1,6 @@
 const TMDB_PROXY_URL = "https://mute-lab-3092jemmoviemax-api.jasaancool6.workers.dev/";
 /* ==========================================
-   CINEMAX — MOVIE CATALOGUE
+   JemMovieMax — MOVIE CATALOGUE
    100 released movies + upcoming movies
 ========================================== */
 
@@ -497,20 +497,20 @@ const storage = {
 let activeCategory = "All";
 let currentMovie = null;
 let authMode = "login";
-let user = storage.get("cinemaxUser",null);
-let watchlist = storage.get("cinemaxWatchlist",[]);
+let user = storage.get("JemMovieMaxUser",null);
+let watchlist = storage.get("JemMovieMaxWatchlist",[]);
 
 const heroMovie = movies[0];
 
 // 7. IMAGE FALLBACKS
 
 function safeImage(url) {
-  return url || "https://placehold.co/500x750/171720/ffffff?text=CineMax";
+  return url || "https://placehold.co/500x750/171720/ffffff?text=JemMovieMax";
 }
 
 function handleImageError(img) {
   img.onerror = null;
-  img.src = "https://placehold.co/500x750/171720/ffffff?text=CineMax";
+  img.src = "https://placehold.co/500x750/171720/ffffff?text=JemMovieMax";
 }
 
 // 8. MOVIE CARDS
@@ -658,7 +658,7 @@ function setWatchlist(id) {
     ? watchlist.filter(item => item!==id)
     : [...watchlist,id];
 
-  storage.set("cinemaxWatchlist",watchlist);
+  storage.set("JemMovieMaxWatchlist",watchlist);
 
   render();
 
@@ -1037,7 +1037,7 @@ $("#authForm").addEventListener("submit",event => {
     return;
   }
 
-  let accounts = storage.get("cinemaxAccounts",{});
+  let accounts = storage.get("JemMovieMaxAccounts",{});
 
   if (authMode==="register") {
     if (!name) {
@@ -1052,7 +1052,7 @@ $("#authForm").addEventListener("submit",event => {
     }
 
     accounts[email] = {name,password};
-    storage.set("cinemaxAccounts",accounts);
+    storage.set("JemMovieMaxAccounts",accounts);
 
     user = {name,email};
   } else {
@@ -1068,7 +1068,7 @@ $("#authForm").addEventListener("submit",event => {
     };
   }
 
-  storage.set("cinemaxUser",user);
+  storage.set("JemMovieMaxUser",user);
 
   updateAccount();
   hideModal("authModal");
@@ -1084,7 +1084,7 @@ $("#authForm").addEventListener("submit",event => {
 
 $("#signOut").addEventListener("click",() => {
   user = null;
-  localStorage.removeItem("cinemaxUser");
+  localStorage.removeItem("JemMovieMaxUser");
 
   updateAccount();
   hideModal("authModal");
