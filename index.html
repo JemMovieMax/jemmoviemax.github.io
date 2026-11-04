@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
 <body>
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="JemMovieMax home"><span class="brand-mark">C</span><span>CINE<span>MAX</span></span></a>
+    <a class="brand" href="#" aria-label="JemMovieMax home"><span class="brand-mark">J</span><span>Jem<span>MovieMAX</span></span></a>
     <nav class="main-nav" aria-label="Main navigation">
       <a class="active" href="#home">Home</a><a href="#browse">Discover</a><a href="#watchlist">My List</a>
     </nav>
@@ -31,7 +32,7 @@
       <div class="hero-backdrop" id="heroBackdrop"></div>
       <div class="hero-shade"></div>
       <div class="hero-content">
-        <div class="eyebrow"><span class="eyebrow-line"></span> JemMovieMax ORIGINALS</div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> JEMMOVIEMAX ORIGINALS</div>
         <div class="hero-kicker">FEATURED FILM <span>•</span> 2024</div>
         <h1 id="heroTitle">DUNE: PART TWO</h1>
         <div class="hero-meta" id="heroMeta"><span class="rating">★ 8.5</span><span>2024</span><span>2h 46m</span><span class="pill">Sci-Fi</span></div>
@@ -77,7 +78,7 @@
         <div class="movie-grid" id="movieGrid"></div>
         <div class="empty-state hidden" id="emptyState"><div>⌕</div><h3>No movies found</h3><p>Try another title or choose a different category.</p><button class="text-button" id="clearFilters">Clear filters</button></div>
       </section>
-      <!-- UPCOMING MOVIES -->
+
       <section class="upcoming-section" id="upcoming">
         <div class="section-heading compact">
           <div>
@@ -86,9 +87,9 @@
           </div>
           <p class="section-hint">Discover what's coming next.</p>
         </div>
-
         <div class="movie-grid" id="upcomingGrid"></div>
       </section>
+
       <section class="watchlist-section" id="watchlist">
         <div class="section-heading compact"><div><p class="section-overline">SAVED FOR LATER</p><h2>My watchlist <span class="list-count" id="watchlistCount">0</span></h2></div><p class="section-hint">Your movies, all in one place.</p></div>
         <div class="movie-grid watchlist-grid" id="watchlistGrid"></div>
@@ -97,7 +98,11 @@
     </section>
   </main>
 
-  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>CINE<span>MAX</span></span></a><p>Discover stories worth watching.</p><small>© <span id="year"></span> JemMovieMax. Movie information and trailers are provided for discovery purposes.</small></footer>
+  <footer>
+    <a class="brand footer-brand" href="#" aria-label="JemMovieMax home"><span class="brand-mark">J</span><span>Jem<span>MovieMAX</span></span></a>
+    <p>Discover stories worth watching.</p>
+    <small>© <span id="year"></span> JemMovieMax. Movie information and trailers are provided for discovery purposes.</small>
+  </footer>
 
   <div class="modal-backdrop hidden" id="movieModal" role="dialog" aria-modal="true" aria-label="Movie details">
     <div class="modal movie-modal"><button class="modal-close" data-close aria-label="Close">×</button><div class="detail-cover" id="detailCover"></div><div class="detail-body"><div class="detail-label">MOVIE DETAILS</div><h2 id="detailTitle"></h2><div class="detail-meta" id="detailMeta"></div><p id="detailDescription"></p><div class="detail-actions"><button class="primary-btn" id="detailTrailer">▶ Watch trailer</button><button class="secondary-btn" id="detailSave">♡ Add to watchlist</button></div></div></div>
@@ -108,7 +113,7 @@
   </div>
 
   <div class="modal-backdrop hidden" id="authModal" role="dialog" aria-modal="true" aria-label="Account">
-    <div class="modal auth-modal"><button class="modal-close" data-close aria-label="Close">×</button><a class="brand auth-brand" href="#"><span class="brand-mark">C</span><span>CINE<span>MAX</span></span></a><p class="section-overline">YOUR CINEMATIC SPACE</p><h2 id="authTitle">Welcome back</h2><p class="auth-subtitle">Sign in to keep your watchlist close.</p>
+    <div class="modal auth-modal"><button class="modal-close" data-close aria-label="Close">×</button><a class="brand auth-brand" href="#" aria-label="JemMovieMax home"><span class="brand-mark">J</span><span>Jem<span>MovieMAX</span></span></a><p class="section-overline">YOUR CINEMATIC SPACE</p><h2 id="authTitle">Welcome back</h2><p class="auth-subtitle">Sign in to keep your watchlist close.</p>
       <div class="auth-tabs"><button class="auth-tab active" data-auth="login">Sign in</button><button class="auth-tab" data-auth="register">Create account</button></div>
       <form id="authForm"><label id="nameField" class="hidden">Your name<input id="authName" type="text" placeholder="Alex Morgan"></label><label>Email address<input id="authEmail" type="email" placeholder="you@example.com" required></label><label>Password<input id="authPassword" type="password" placeholder="At least 6 characters" minlength="6" required></label><p class="auth-error" id="authError"></p><button class="primary-btn auth-submit" type="submit" id="authSubmit">Sign in</button></form>
       <p class="auth-footnote">Demo account only. Your account details stay in this browser and are not sent to a server.</p>
@@ -118,12 +123,12 @@
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>
 
-<div id="loadingScreen">
-  <img src="favicon.png" alt="JemMovieMax">
-  <h2>JemMovieMax</h2>
-  <div class="loader"></div>
-  <p>Preparing your movie experience...</p>
-</div>
+  <div id="loadingScreen">
+    <img src="favicon.png" alt="JemMovieMax">
+    <h2>JemMovieMax</h2>
+    <div class="loader"></div>
+    <p>Preparing your movie experience...</p>
+  </div>
 
 </body>
 </html>
