@@ -144,9 +144,8 @@
   videoLink.className="side-link";videoLink.dataset.panel="upload-video";videoLink.innerHTML='▷ <span>Video uploads</span>';
   $(".sidebar").insertBefore(videoLink,$(".side-bottom"));
   videoLink.addEventListener("click",()=>go("upload-video"));
-  start();
-})();
-$("#forgotPassword").addEventListener("click", async () => {
+  
+  $("#forgotPassword").addEventListener("click", async () => {
     setError("");
 
     if (!configured) {
@@ -169,3 +168,6 @@ $("#forgotPassword").addEventListener("click", async () => {
 
     setError("Password recovery email sent! Check your inbox.");
 });
+  
+  start();
+})();
