@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>JemMovieMax • Admin</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="glow glow-a"></div><div class="glow glow-b"></div>
+  <main id="loginView" class="login-wrap">
+    <a class="brand" href="index.html"><span class="brand-icon">J</span> JemMovieMax</a>
+    <section class="login-card">
+      <p class="eyebrow">PRIVATE CONTROL CENTER</p>
+      <h1>Admin sign in</h1>
+      <p class="muted">This area is restricted to approved JemMovieMax administrators.</p>
+      <form id="loginForm">
+        <label>Email<input id="email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" required placeholder="Your password"></label>
+        <button class="btn primary full" type="submit">Sign in securely</button>
+        <button type="button" id="forgotPassword"
+class="btn full">
+Forgot Password?
+</button>
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+      <p class="tiny">Admin access is checked against your Supabase profile role. A normal registered account cannot enter.</p>
+    </section>
+    <a class="back-link" href="index.html">← Back to JemMovieMax</a>
+  </main>
+
+  <div id="dashboardView" class="dashboard hidden">
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><span class="brand-icon">J</span> JemMovieMax</a>
+      <p class="side-label">WORKSPACE</p>
+      <button class="side-link active" data-panel="overview">▦ <span>Overview</span></button>
+      <button class="side-link" data-panel="movies">▣ <span>Movies</span></button>
+      <button class="side-link" data-panel="upload">↑ <span>Upload movie</span></button>
+      <button class="side-link" data-panel="notifications">♧ <span>Notifications</span></button>
+      <div class="side-bottom"><a href="index.html">↗ View website</a><button id="logoutBtn">⇥ Sign out</button></div>
+    </aside>
+    <section class="main-area">
+      <header class="topbar"><div><p class="eyebrow">JEMMOVIEMAX / ADMIN</p><h1 id="panelTitle">Overview</h1></div><div class="admin-chip"><span class="online-dot"></span><span id="adminEmail">Administrator</span></div></header>
+      <div id="notice" class="notice hidden"></div>
+
+      <section class="panel" id="panel-overview">
+        <div class="welcome"><div><p class="eyebrow">YOUR CONTROL ROOM</p><h2>Welcome back.</h2><p class="muted">Manage your catalogue, streaming uploads and audience updates.</p></div><div class="welcome-mark">JM</div></div>
+        <div class="stats">
+          <article class="stat-card"><span>CATALOGUE</span><strong id="movieCount">—</strong><small>Movies in database</small></article>
+          <article class="stat-card"><span>PUBLISHED</span><strong id="publishedCount">—</strong><small>Visible to visitors</small></article>
+          <article class="stat-card"><span>UPDATES</span><strong id="notificationCount">—</strong><small>Notifications created</small></article>
+        </div>
+        <div class="content-card"><div class="card-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h3>Recently added movies</h3></div><button class="btn ghost" data-go="movies">Manage movies →</button></div><div id="recentMovies" class="table-wrap"><p class="muted">Loading your catalogue…</p></div></div>
+      </section>
+
+      <section class="panel hidden" id="panel-movies">
+        <div class="content-card"><div class="card-heading"><div><p class="eyebrow">CATALOGUE</p><h3>Movie library</h3></div><button class="btn primary" data-go="upload">＋ Add movie</button></div><div id="movieTable" class="table-wrap"><p class="muted">Loading movies…</p></div></div>
+      </section>
+
+      <section class="panel hidden" id="panel-upload">
+        <div class="content-card form-card"><p class="eyebrow">NEW CONTENT</p><h3>Add a movie</h3><p class="muted">Add its details first. You can upload the video directly to Cloudflare Stream without exposing your Stream API token.</p>
+          <form id="movieForm" class="form-grid">
+            <label>Movie title<input id="movieTitle" required maxlength="160" placeholder="Movie title"></label>
+            <label>Release year<input id="movieYear" type="number" min="1888" max="2100" required placeholder="2026"></label>
+            <label>Genre<input id="movieGenre" required maxlength="60" placeholder="Action, Drama"></label>
+            <label>Poster image URL<input id="moviePoster" type="url" placeholder="https://…"></label>
+            <label class="wide">Overview<textarea id="movieOverview" rows="3" placeholder="Short movie description"></textarea></label>
+            <label class="check-label wide"><input id="moviePublished" type="checkbox"> Publish on the public website</label>
+            <div class="wide actions"><button class="btn primary" type="submit">Save movie details</button><span id="movieFormStatus" class="muted"></span></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="panel-upload-video">
+        <div class="content-card"><p class="eyebrow">VIDEO HOSTING</p><h3>Cloudflare Stream upload</h3><p class="muted">Choose a movie record, then request a one-time direct-upload URL. The actual video goes straight to Cloudflare; the secret API token stays on the server.</p>
+          <form id="streamForm" class="form-grid">
+            <label class="wide">Movie<select id="streamMovie" required><option value="">Select a movie</option></select></label>
+            <label class="wide">Video file<input id="videoFile" type="file" accept="video/*" required></label>
+            <div class="wide actions"><button class="btn primary" type="submit">Upload to Stream</button><span id="streamStatus" class="muted"></span></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="panel-notifications">
+        <div class="content-card form-card"><p class="eyebrow">AUDIENCE</p><h3>Create notification</h3><p class="muted">Send a notice to registered users. Notifications are stored in Supabase and can be shown in the website once the member notification panel is connected.</p>
+          <form id="notificationForm" class="form-grid">
+            <label class="wide">Title<input id="notificationTitle" required maxlength="120" placeholder="New movie released!"></label>
+            <label class="wide">Message<textarea id="notificationBody" rows="4" required maxlength="1000" placeholder="Tell members what's new…"></textarea></label>
+            <div class="wide actions"><button class="btn primary" type="submit">Publish notification</button><span id="notificationStatus" class="muted"></span></div>
+          </form>
+          <div id="notificationList" class="table-wrap"></div>
+        </div>
+      </section>
+    </section>
+  </div>
+  <script src="admin-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
